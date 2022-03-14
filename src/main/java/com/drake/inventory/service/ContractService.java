@@ -3,6 +3,7 @@ package com.drake.inventory.service;
 import com.drake.inventory.Constants;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.OkHttpClient;
 import org.springframework.stereotype.Service;
 import org.web3j.crypto.Credentials;
 import org.web3j.mintanimaltoken.MintAnimalToken;
@@ -15,6 +16,7 @@ import org.web3j.tx.gas.DefaultGasProvider;
 import javax.annotation.PostConstruct;
 
 import java.math.BigInteger;
+import java.util.concurrent.TimeUnit;
 
 import static com.drake.inventory.Constants.*;
 
@@ -29,7 +31,12 @@ public class ContractService {
 
 
     public ContractService() {
-        web3j = Web3j.build(new HttpService(POLYGON_TESTNET_URL));
+        OkHttpClient.Builder bld = new OkHttpClient.Builder();
+        bld.connectTimeout(300, TimeUnit.SECONDS);
+        bld.readTimeout(300, TimeUnit.SECONDS);
+        bld.writeTimeout(300, TimeUnit.SECONDS);
+
+        web3j = Web3j.build(new HttpService(POLYGON_TESTNET_URL, bld.build(), false));
         credentials = Credentials.create(CHANGGO_PRIVATE_KEY); // todo: https://docs.web3j.io/command_line.html learn command line tools for generating waller file
         manager = new RawTransactionManager(web3j, credentials, 80001L);
         contract = MintAnimalToken

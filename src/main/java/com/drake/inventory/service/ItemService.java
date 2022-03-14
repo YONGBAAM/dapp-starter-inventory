@@ -52,7 +52,7 @@ public class ItemService {
 
         String currentNftAddressOwner = contractService.findOwnerByNftId(item.getNftId()).toLowerCase(Locale.ROOT);
         if (!currentNftAddressOwner.equals(Constants.CHANGGO_ADDRESS.toLowerCase(Locale.ROOT))) {
-            repository.delete(item);// TODO: This need to be throw exception and handle in controller
+//            repository.delete(item);// TODO: This need to be throw exception and handle in controller
             throw new RuntimeException("NFT not in CHANGGO id: " + item.getNftId() + " " + currentNftAddressOwner + " " + Constants.CHANGGO_ADDRESS);
 
         }

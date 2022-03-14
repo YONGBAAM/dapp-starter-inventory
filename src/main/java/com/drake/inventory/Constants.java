@@ -8,7 +8,7 @@ public class Constants {
     private Constants() {
     }
 
-    public static final String POLYGON_TESTNET_URL = "https://matic-mumbai.chainstacklabs.com";
+    public static final String POLYGON_TESTNET_URL = "https://rpc-mumbai.maticvigil.com";
 
     // TODO: THIS SHOULD NOT BE HERE IN MAIN NET
     public static final String CHANGGO_ADDRESS = "0xc9B7F6CB9Ee166f4d113B5394A05E346048628d1";
