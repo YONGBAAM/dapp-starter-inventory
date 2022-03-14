@@ -37,6 +37,7 @@ sourceSets {
 //}
 
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-tomcat'
 // https://mvnrepository.com/artifact/org.web3j/core
     implementation group: 'org.web3j', name: 'core', version: '4.8.7' exclude group:'com.squareup.okhttp3'
 
