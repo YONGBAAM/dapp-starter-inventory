@@ -46,7 +46,7 @@ public class ItemService {
             throw new PasswordNotEqualException(request.getPostId());
         }
 
-        if (!item.getOwnerWalletAddress().equals(request.getAddress())) {
+        if (!item.getOwnerWalletAddress().toLowerCase(Locale.ROOT).equals(request.getAddress().toLowerCase(Locale.ROOT))) {
             throw new RuntimeException("Please retrive from original address. OA: " + item.getOwnerWalletAddress());
         }
 
